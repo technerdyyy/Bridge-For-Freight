@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown, ChevronRight, ArrowRight } from "lucide-react";
@@ -177,47 +178,47 @@ export default function Navbar() {
         )}
       >
         <div className="container-site">
-          <div className="flex items-center justify-between h-18 py-4">
+          <div className="flex items-center justify-between h-18 py-2">
             {/* Logo */}
             <Link
               href="/"
-              className="flex items-center gap-2.5 group shrink-0 z-10"
+              aria-label="Bridge For Freight — Home"
+              className={cn(
+                "relative shrink-0 z-10 flex items-center h-10 md:h-12",
+                mobileOpen ? "invisible md:visible" : "",
+              )}
             >
-              <div className="w-8 h-8 bg-brand-red flex items-center justify-center shrink-0">
-                <svg
-                  width="18"
-                  height="18"
-                  viewBox="0 0 18 18"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M1 13h16M1 13V9a8 8 0 0 1 16 0v4M5 13V9M9 13V7M13 13V9"
-                    stroke="white"
-                    strokeWidth="1.75"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <div className="leading-tight">
-                <span
-                  className={cn(
-                    "block font-display font-bold text-sm tracking-tight transition-colors duration-300",
-                    transparent ? "text-white" : "text-brand-black",
-                  )}
-                >
-                  Bridge For Freight
-                </span>
-                <span
-                  className={cn(
-                    "block text-[10px] font-medium tracking-[0.15em] uppercase transition-colors duration-300",
-                    transparent ? "text-white/60" : "text-brand-gray-500",
-                  )}
-                >
-                  Logistics Group
-                </span>
-              </div>
+              {/* White logo — visible on transparent/dark navbar */}
+              <Image
+                src="/freightLogo_white.svg"
+                alt="Bridge For Freight"
+                width={320}
+                height={90}
+                priority
+                unoptimized
+                className={cn(
+                  "h-10 md:h-12 w-auto transition-opacity duration-300",
+                  transparent && !mobileOpen
+                    ? "opacity-100"
+                    : "opacity-0 pointer-events-none",
+                )}
+              />
+              {/* Red logo — visible on white/scrolled navbar, stacked on top */}
+              <Image
+                src="/freightLogo_red.svg"
+                alt=""
+                aria-hidden="true"
+                width={320}
+                height={90}
+                priority
+                unoptimized
+                className={cn(
+                  "h-10 md:h-12 w-auto absolute inset-0 transition-opacity duration-300",
+                  transparent && !mobileOpen
+                    ? "opacity-0 pointer-events-none"
+                    : "opacity-100",
+                )}
+              />
             </Link>
 
             {/* Desktop nav */}
@@ -423,7 +424,10 @@ export default function Navbar() {
                 {!transparent && (
                   <span
                     className="shine-sweep absolute inset-y-0 left-0 w-12 pointer-events-none"
-                    style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)' }}
+                    style={{
+                      background:
+                        "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)",
+                    }}
                   />
                 )}
                 Get a Quote
@@ -457,29 +461,23 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-40 bg-white lg:hidden flex flex-col overflow-y-auto"
+            className="fixed inset-0 z-[60] bg-white lg:hidden flex flex-col overflow-y-auto"
           >
             {/* Mobile header */}
             <div className="flex items-center justify-between h-18 py-4 px-6 border-b border-brand-gray-200 shrink-0">
               <Link
                 href="/"
-                className="flex items-center gap-2.5"
+                className="flex items-center"
                 onClick={() => setMobileOpen(false)}
               >
-                <div className="w-8 h-8 bg-brand-red flex items-center justify-center">
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                    <path
-                      d="M1 13h16M1 13V9a8 8 0 0 1 16 0v4M5 13V9M9 13V7M13 13V9"
-                      stroke="white"
-                      strokeWidth="1.75"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </div>
-                <span className="font-display font-bold text-sm text-brand-black">
-                  Bridge For Freight
-                </span>
+                <Image
+                  src="/freightLogo_red.svg"
+                  alt="Bridge For Freight"
+                  width={320}
+                  height={90}
+                  unoptimized
+                  className="h-9 w-auto"
+                />
               </Link>
               <button
                 aria-label="Close menu"
@@ -677,7 +675,9 @@ export default function Navbar() {
                   className={cn(
                     "flex items-center justify-between py-4 border-b border-brand-gray-100",
                     "text-base font-semibold font-display text-brand-black hover:text-brand-red transition-colors",
-                    (pathname === "/careers" || pathname.startsWith("/careers/")) && "text-brand-red",
+                    (pathname === "/careers" ||
+                      pathname.startsWith("/careers/")) &&
+                      "text-brand-red",
                   )}
                   onClick={() => setMobileOpen(false)}
                 >
@@ -717,7 +717,10 @@ export default function Navbar() {
               >
                 <span
                   className="shine-sweep absolute inset-y-0 left-0 w-16 pointer-events-none"
-                  style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)' }}
+                  style={{
+                    background:
+                      "linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent)",
+                  }}
                 />
                 Get a Quote
               </Link>

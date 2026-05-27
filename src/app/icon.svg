@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Red background -->
+  <rect width="32" height="32" fill="#C1121F"/>
+  <!-- Bridge icon — same path as Navbar, centred in 32×32 -->
+  <g transform="translate(7, 7)">
+    <path
+      d="M1 13h16M1 13V9a8 8 0 0 1 16 0v4M5 13V9M9 13V7M13 13V9"
+      stroke="white"
+      stroke-width="1.75"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      fill="none"
+    />
+  </g>
+</svg>
