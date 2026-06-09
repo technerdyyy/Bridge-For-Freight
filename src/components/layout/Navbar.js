@@ -190,7 +190,7 @@ export default function Navbar() {
             >
               {/* White logo — visible on transparent/dark navbar */}
               <Image
-                src="/freightLogo_white.svg"
+                src="/bridge.png"
                 alt="Bridge For Freight"
                 width={320}
                 height={90}
@@ -205,7 +205,7 @@ export default function Navbar() {
               />
               {/* Red logo — visible on white/scrolled navbar, stacked on top */}
               <Image
-                src="/freightLogo_red.svg"
+                src="/mainLogo.png"
                 alt=""
                 aria-hidden="true"
                 width={320}
@@ -471,7 +471,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
               >
                 <Image
-                  src="/freightLogo_red.svg"
+                  src="/mainLogo.png"
                   alt="Bridge For Freight"
                   width={320}
                   height={90}
